@@ -4,6 +4,7 @@ import ServicesHero from './ServicesHero';
 import ServicesOfferings from './ServicesOfferings';
 import ServicesExclusiveOffer from './ServicesExclusiveOffer';
 import ServicesFaqs from './ServicesFaqs';
+import ServicesNewsletter from './ServicesNewsletter';
 
 const Services = () => {
   return (
@@ -12,6 +13,7 @@ const Services = () => {
       <ServicesOfferings/>
       <ServicesExclusiveOffer/>
       <ServicesFaqs/>
+      <ServicesNewsletter/>
     </div>
   );
 }
