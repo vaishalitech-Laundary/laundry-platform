@@ -3,6 +3,7 @@ import React from 'react';
 import ServicesHero from './ServicesHero';
 import ServicesOfferings from './ServicesOfferings';
 import ServicesExclusiveOffer from './ServicesExclusiveOffer';
+import ServicesFaqs from './ServicesFaqs';
 
 const Services = () => {
   return (
@@ -10,6 +11,7 @@ const Services = () => {
       <ServicesHero/>
       <ServicesOfferings/>
       <ServicesExclusiveOffer/>
+      <ServicesFaqs/>
     </div>
   );
 }
