@@ -102,7 +102,7 @@ const Home = () => {
             xmlns="http://www.w3.org/2000/svg"
           >
             <path
-              d="M0,200 C250,0 750,200 1000,1"
+              d="M0,100 C250,0 750,200 1000,100"
               stroke="#66CC33"
               strokeWidth="3"
               strokeDasharray="8 5"
