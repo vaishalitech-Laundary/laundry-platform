@@ -17,7 +17,8 @@ const Footer = () => {
           </p>
         </div>
         <div>
-          <button className="button bg-[#1F3C5F] text-white pl-8 pr-8 pt-3 pb-3 rounded-lg text-[1rem] shadow-2xl">
+          <button className="button bg-[#1F3C5F] text-white pl-8 pr-8 pt-3 pb-3 rounded-lg text-[1rem] shadow-2xl
+          hover:cursor-pointer ">
             Contact
           </button>
         </div>

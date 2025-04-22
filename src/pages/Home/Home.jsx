@@ -3,7 +3,15 @@ import Rec1 from "../../assets/Rectangle 1.png";
 import Rec2 from "../../assets/Rectangle 2.png";
 import Rec3 from "../../assets/Rectangle 3.png";
 import Rec4 from "../../assets/Rectangle 4.png";
-import Placeholder from "../../assets/Placeholder.png"
+
+import Laundry1 from "../../assets/Laundry1.png";
+import Laundry2 from "../../assets/Laundry2.png";
+import Laundry3 from "../../assets/Laundry3.png";
+import Placeholder from "../../assets/Placeholder.png";
+
+import Pickup from "../../assets/Pickup.png";
+import Clean from "../../assets/Clean.png";
+import Deliver from "../../assets/Deliver.png";
 
 const Home = () => {
   return (
@@ -29,7 +37,7 @@ const Home = () => {
         </div>
       </section>
 
-      <section className="bg-white block h-[110vh]">
+      <section className="bg-white block h-[120vh] p-6">
         <div className="pt-[8vh]">
           <h1 className="text-4xl text-[#1F3C5F] text-center font-extrabold ">
             Why Our Laundry Service Stands Out
@@ -42,7 +50,9 @@ const Home = () => {
 
         <div className="flex items-center justify-center gap-5 m-auto  mt-[10vh]">
           <div className="text-center">
-            <div className="h-[30vh]"></div>
+            <div className="flex items-center justify-center mb-[2rem]">
+              <img src={Laundry3} alt="image" className="h-[15vw]" />
+            </div>
             <h3 className="text-[#1F3C5F] font-bold text-3xl ">
               Free Pickup & Delivery Right to Your Door
             </h3>
@@ -53,7 +63,9 @@ const Home = () => {
             </p>
           </div>
           <div className="text-center">
-            <div className="h-[30vh]"></div>
+            <div className="flex items-center justify-center mb-[2rem]">
+              <img src={Laundry2} alt="image" className="h-[15vw]" />
+            </div>
             <h3 className="text-[#1F3C5F] font-bold text-3xl ">
               Affordable Pricing with No Hidden Fees
             </h3>
@@ -64,15 +76,16 @@ const Home = () => {
             </p>
           </div>
           <div className="text-center">
-            <div className="h-[30vh]"></div>
+            <div className="flex items-center justify-center mb-[2rem]">
+              <img src={Laundry1} alt="image" className="h-[15vw]" />
+            </div>
             <h3 className="text-[#1F3C5F] font-bold text-3xl ">
               Eco-Friendly Products for a Greener Clean
             </h3>
             <p>
               Lorem, ipsum dolor sit amet consectetur adipisicing elit.
               Reprehenderit eveniet nesciunt blanditiis autem tempore itaque
-              iusto facilis nostrum! Nisi repudiandae illum vero quia
-              consequuntur ex!
+              iusto facilis nostrum! Nisi repudiandae illum.
             </p>
           </div>
         </div>
@@ -82,7 +95,7 @@ const Home = () => {
           </button>
         </div>
       </section>
-      <section className="pt-[8vh] h-[100vh]">
+      <section className="pt-[8vh] h-[110vh]">
         <div className="text-center ">
           <h1 className="text-4xl text-[#1F3C5F] font-bold">
             Simple Steps to Fresh, Clean Laundry
@@ -94,7 +107,7 @@ const Home = () => {
             dolore blanditiis aperiam natus. Culpa!
           </p>
         </div>
-        <div className="relative w-full h-40 bg-[#F7F7F7] mt-[10vh]">
+        <div className="relative w-full h-40 bg-[#F7F7F7] mt-[15vh]">
           <svg
             className="absolute top-0 left-0 w-full h-full"
             viewBox="0 0 1000 200"
@@ -110,22 +123,36 @@ const Home = () => {
             />
           </svg>
 
-          <div className="absolute left-[20%] top-[60%] -translate-x-1/2 -translate-y-1/2">
-            <div className="bg-lime-500 text-white w-8 h-8 flex items-center justify-center rounded-full shadow-md">
+          <div className="absolute left-[15%] top-[25%] -translate-x-1/2 -translate-y-1/2">
+            <p className="bg-lime-500 text-white  flex justify-center items-center rounded-full shadow-md w-8 h-8 z-10 absolute right-[5%] top-[25%]">
               1
-            </div>
+            </p>
+            <img
+              src={Pickup}
+              alt="Pickup clothes image"
+              className="h-[200px] rounded-full"
+            />
           </div>
 
-          <div className="absolute left-[50%] top-[30%] -translate-x-1/2 -translate-y-1/2">
-            <div className="bg-lime-500 text-white w-8 h-8 flex items-center justify-center rounded-full shadow-md">
+          <div className="absolute left-[45%] top-[25%] -translate-x-1/2 -translate-y-1/2">
+            <p className="bg-lime-500 text-white  flex justify-center items-center rounded-full shadow-md w-8 h-8 z-10 absolute right-[5%] top-[25%]">
               2
-            </div>
+            </p>
+            <img
+              src={Clean}
+              alt="clean clothes image"
+              className="h-[200px] rounded-full"
+            />
           </div>
-
-          <div className="absolute right-[18%] top-[55%] -translate-x-1/2 -translate-y-1/2">
-            <div className="bg-lime-500 text-white w-8 h-8 flex items-center justify-center rounded-full shadow-md">
+          <div className="absolute right-[5%] top-[25%] -translate-x-1/2 -translate-y-1/2">
+            <p className="bg-lime-500 text-white  flex justify-center items-center rounded-full shadow-md w-8 h-8 z-10 absolute right-[5%] top-[25%]">
               3
-            </div>
+            </p>
+            <img
+              src={Deliver}
+              alt="Deliver clothes image"
+              className="h-[200px] rounded-full"
+            />
           </div>
         </div>
 
@@ -147,22 +174,26 @@ const Home = () => {
           <button className="button m-[2rem] border-2 border-[#7ED321] p-[5px] rounded-[5px] hover:cursor-pointer shadow-lg ">
             Get Started
           </button>
-          <button className="button hover:cursor-pointer">Learn More &#x3009;</button>
+          <button className="button hover:cursor-pointer">
+            Learn More &#x3009;
+          </button>
         </div>
       </section>
       <section className="bg-white pt-[10vh]">
-      <div className="m-5 flex items-center justify-around gap-[5rem]">
-        <div>
-          <img src={Placeholder} alt="image" className="w-[40vw]" />
+        <div className="m-5 flex items-center justify-around gap-[5rem]">
+          <div>
+            <img src={Placeholder} alt="image" className="w-[40vw]" />
+          </div>
+          <div>
+            <p className="text-2xl">{"⭐".repeat(5)}</p>
+            <p className="text-2xl font-bold">
+              "Fast, friendly, and eco-conscious! I recommend them to everyone I
+              know."
+            </p>
+            <p className="font-bold mt-[5rem]">David Brown</p>
+            <p>Tech Lead, Innovate</p>
+          </div>
         </div>
-        <div>
-          <p className="text-2xl">{"⭐".repeat(5)}</p>
-          <p className="text-2xl font-bold">"Fast, friendly, and eco-conscious! I recommend them to everyone I know."</p>
-          <p className="font-bold mt-[5rem]">David Brown</p>
-          <p>Tech Lead, Innovate</p>
-        </div>
-      </div>
-
       </section>
     </div>
   );
