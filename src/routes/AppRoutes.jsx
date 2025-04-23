@@ -5,6 +5,7 @@ import { Routes, Route } from "react-router-dom";
 import Home from "../pages/Home/Home";
 import Login from "../pages/Auth/Login";
 import Services from "../pages/Services/Services";
+import UserDashboardRoute from "../pages/Dashboard/userDashboardRoute";
 
 const AppRoutes = () => {
   return (
@@ -12,7 +13,10 @@ const AppRoutes = () => {
       <Route path="/" element={<Home />} />
       <Route path="/login" element={<Login />} />
       <Route path="/services" element={<Services />} />
+      <Route path="/user-dashboard" element={<UserDashboardRoute />} />
+
       <Route path="*" element={<div className="p-6 text-center">404 - Page Not Found</div>} />
+
     </Routes>
   );
 };
