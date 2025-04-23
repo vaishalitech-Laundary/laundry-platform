@@ -1,14 +1,10 @@
-// src/pages/Auth/Login.jsx
-import React from 'react';
+import React from "react";
+import LoginForm from "../../components/auth/LoginForm";
 
 const Login = () => {
-  return (
-    <div>
-      <h1>Login Page</h1>
-      <p>Enter your phone number to receive OTP.</p>
-      {/* You can add OTP input here later */}
-    </div>
-  );
-}
+  return <div>
+    <LoginForm/>
+  </div>;
+};
 
 export default Login;
