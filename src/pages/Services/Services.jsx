@@ -1,18 +1,21 @@
 // src/pages/Services/Services.jsx
 import React from 'react';
+import ServicesHero from './ServicesHero';
+import ServicesOfferings from './ServicesOfferings';
+import ServicesExclusiveOffer from './ServicesExclusiveOffer';
+import ServicesFaqs from './ServicesFaqs';
+import ServicesNewsletter from './ServicesNewsletter';
+import Serviceslaundry from './Serviceslaundry';
 
 const Services = () => {
   return (
-    <div>
-      <h1>Our Laundry Services</h1>
-      <p>We offer a range of services including Wash & Fold, Dry Cleaning, and Express Service.</p>
-      <ul>
-        <li>Wash & Fold</li>
-        <li>Wash & Iron</li>
-        <li>Dry Cleaning</li>
-        <li>Express Service</li>
-      </ul>
-      <p>Choose the service that suits you the best!</p>
+    <div className="bg-white">
+      <ServicesHero/>
+      <Serviceslaundry/>
+      <ServicesOfferings/>
+      <ServicesExclusiveOffer/>
+      <ServicesFaqs/>
+      <ServicesNewsletter/>
     </div>
   );
 }
