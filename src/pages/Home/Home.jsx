@@ -15,163 +15,236 @@ import Deliver from "../../assets/Deliver.png";
 
 const Home = () => {
   return (
-    <div className="bg-[#F7F7F7] mt-auto ">
-      <section>
-        <h1 className="text-center pt-[10vh] w-[70vw] text-6xl text-[#1F3C5F] font-extrabold m-auto">
+    <div className="bg-[#F7F7F7] mt-auto">
+
+      <section className="px-4 md:px-8 lg:px-16">
+        <h1 className="text-center pt-[5vh] md:pt-[10vh] w-full md:w-[70vw] text-3xl md:text-5xl lg:text-6xl text-[#1F3C5F] font-extrabold mx-auto">
           Hassle-Free Laundry Service at Your Doorstep!
         </h1>
-        <h3 className="text-center w-[60vw] m-auto p-2  ">
+        <h3 className="text-center w-full md:w-[60vw] mx-auto p-2 text-sm md:text-base lg:text-lg">
           We pick up, wash, and deliver your clothes fresh and clean. Experience
           the convenience of laundry service tailored to your busy lifestyle.
         </h3>
-        <div className="text-center mt-[7vh]">
-          <button className="button rounded-lg bg-[#1F3C5F] text-white text-2xl p-5 shadow-lg hover:cursor-pointer">
+        <div className="text-center mt-[4vh] md:mt-[7vh]">
+          <button className="button rounded-lg bg-[#1F3C5F] text-white text-lg md:text-2xl p-3 md:p-5 shadow-lg">
             Schedule a pickup
           </button>
         </div>
-        <div className="flex gap-3 items-center justify-center mt-[7vh]">
-          <img src={Rec1} alt="" className="h-[60vh]" />
-          <img src={Rec2} alt="" className="h-[60vh]" />
-          <img src={Rec3} alt="" className="h-[60vh]" />
-          <img src={Rec4} alt="" className="h-[60vh]" />
+        <div className="container mx-auto">
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-2 md:gap-4 mt-[4vh] md:mt-[7vh]">
+            <div className="aspect-w-16 aspect-h-9 w-full">
+              <img 
+                src={Rec1} 
+                alt="Laundry Service" 
+                className="w-full h-[150px] xs:h-[180px] sm:h-[220px] md:h-[280px] lg:h-[320px] xl:h-[400px] object-cover rounded-lg shadow-md" 
+              />
+            </div>
+            <div className="aspect-w-16 aspect-h-9 w-full">
+              <img 
+                src={Rec2} 
+                alt="Cleaning Process" 
+                className="w-full h-[150px] xs:h-[180px] sm:h-[220px] md:h-[280px] lg:h-[320px] xl:h-[400px] object-cover rounded-lg shadow-md" 
+              />
+            </div>
+            <div className="aspect-w-16 aspect-h-9 w-full">
+              <img 
+                src={Rec3} 
+                alt="Delivery Service" 
+                className="w-full h-[150px] xs:h-[180px] sm:h-[220px] md:h-[280px] lg:h-[320px] xl:h-[400px] object-cover rounded-lg shadow-md" 
+              />
+            </div>
+            <div className="aspect-w-16 aspect-h-9 w-full">
+              <img 
+                src={Rec4} 
+                alt="Quality Service" 
+                className="w-full h-[150px] xs:h-[180px] sm:h-[220px] md:h-[280px] lg:h-[320px] xl:h-[400px] object-cover rounded-lg shadow-md" 
+              />
+            </div>
+          </div>
         </div>
       </section>
 
-      <section className="bg-white block h-[120vh] p-6">
-        <div className="pt-[8vh]">
-          <h1 className="text-4xl text-[#1F3C5F] text-center font-extrabold ">
+      
+      <section className="bg-white p-4 md:p-6 lg:p-8 min-h-screen">
+        <div className="pt-[4vh] md:pt-[8vh]">
+          <h1 className="text-2xl md:text-4xl text-[#1F3C5F] text-center font-extrabold">
             Why Our Laundry Service Stands Out
           </h1>
-          <p className="text-center mt-[2vh]">
+          <p className="text-center mt-[2vh] px-4 text-sm md:text-base">
             Experience the convenience of our laundry service. We prioritize
             your needs with our reliable and efficient solutions.
           </p>
         </div>
 
-        <div className="flex items-center justify-center gap-5 m-auto  mt-[10vh]">
-          <div className="text-center">
-            <div className="flex items-center justify-center mb-[2rem]">
-              <img src={Laundry3} alt="image" className="h-[15vw]" />
+        <div className="flex flex-col md:flex-row items-center justify-center gap-8 md:gap-5 mt-[5vh] md:mt-[10vh]">
+          <div className="text-center w-full md:w-1/3 px-4">
+            <div className="flex items-center justify-center mb-4 md:mb-[2rem] rounded-lg shadow-md">
+              <img 
+                src={Laundry3} 
+                alt="Pickup and Delivery Service"
+                className="w-full h-[200px] sm:h-[250px] md:h-[300px] object-cover rounded-lg" 
+              />
             </div>
-            <h3 className="text-[#1F3C5F] font-bold text-3xl ">
+            <h3 className="text-[#1F3C5F] font-bold text-xl md:text-2xl lg:text-3xl mb-2">
               Free Pickup & Delivery Right to Your Door
             </h3>
-            <p>
-              Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quae
-              libero expedita est tempore incidunt aperiam dolorum repellat
-              necessitatibus dolores voluptatum obcaecati, aliquam nam eos.
+            <p className="text-sm md:text-base lg:text-lg">
+              Lorem ipsum dolor sit amet, consectetur adipisicing elit...
             </p>
           </div>
-          <div className="text-center">
-            <div className="flex items-center justify-center mb-[2rem]">
-              <img src={Laundry2} alt="image" className="h-[15vw]" />
+
+          <div className="text-center w-full md:w-1/3 px-4">
+            <div className="flex items-center justify-center mb-4 md:mb-[2rem] rounded-lg shadow-md">
+              <img 
+                src={Laundry2} 
+                alt="Affordable Pricing"
+                className="w-full h-[200px] sm:h-[250px] md:h-[300px] object-cover rounded-lg" 
+              />
             </div>
-            <h3 className="text-[#1F3C5F] font-bold text-3xl ">
+            <h3 className="text-[#1F3C5F] font-bold text-xl md:text-2xl lg:text-3xl mb-2">
               Affordable Pricing with No Hidden Fees
             </h3>
-            <p>
-              Lorem ipsum dolor sit amet consectetur adipisicing elit. Magnam
-              quia ea ratione voluptatum omnis accusamus, perspiciatis tenetur
-              sint quam facere.
+            <p className="text-sm md:text-base lg:text-lg">
+              Lorem ipsum dolor sit amet consectetur adipisicing elit...
             </p>
           </div>
-          <div className="text-center">
-            <div className="flex items-center justify-center mb-[2rem]">
-              <img src={Laundry1} alt="image" className="h-[15vw]" />
+
+          <div className="text-center w-full md:w-1/3 px-4">
+            <div className="flex items-center justify-center mb-4 md:mb-[2rem] rounded-lg shadow-md">
+              <img 
+                src={Laundry1} 
+                alt="Eco-Friendly Cleaning"
+                className="w-full h-[200px] sm:h-[250px] md:h-[300px] object-cover rounded-lg" 
+              />
             </div>
-            <h3 className="text-[#1F3C5F] font-bold text-3xl ">
+            <h3 className="text-[#1F3C5F] font-bold text-xl md:text-2xl lg:text-3xl mb-2">
               Eco-Friendly Products for a Greener Clean
             </h3>
-            <p>
-              Lorem, ipsum dolor sit amet consectetur adipisicing elit.
-              Reprehenderit eveniet nesciunt blanditiis autem tempore itaque
-              iusto facilis nostrum! Nisi repudiandae illum.
+            <p className="text-sm md:text-base lg:text-lg">
+              Lorem ipsum dolor sit amet consectetur adipisicing elit...
             </p>
           </div>
         </div>
-        <div className="mt-[10vh]  text-center">
-          <button className="button border-2 border-[#7ED321] p-[5px] rounded-[5px] hover:cursor-pointer shadow-lg">
+
+        <div className="mt-[5vh] md:mt-[10vh] text-center">
+          <button className="button border-2 border-[#7ED321] p-2 md:p-[5px] rounded-[5px] shadow-lg">
             Learn More
           </button>
         </div>
       </section>
-      <section className="pt-[8vh] h-[110vh]">
-        <div className="text-center ">
-          <h1 className="text-4xl text-[#1F3C5F] font-bold">
+
+   
+      <section className="pt-[4vh] md:pt-[8vh] min-h-screen px-4">
+        <div className="text-center">
+          <h1 className="text-2xl md:text-4xl text-[#1F3C5F] font-bold">
             Simple Steps to Fresh, Clean Laundry
           </h1>
-          <p className="m-auto mt-[4vh] w-[80vw]">
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Eligendi
-            illum dolores, quisquam, voluptates totam nulla labore distinctio
-            commodi expedita temporibus quasi tempora alias eveniet veritatis
-            dolore blanditiis aperiam natus. Culpa!
+          <p className="mx-auto mt-[2vh] md:mt-[4vh] w-full md:w-[80vw] text-sm md:text-base">
+            Lorem ipsum dolor sit amet consectetur adipisicing elit...
           </p>
         </div>
-        <div className="relative w-full h-40 bg-[#F7F7F7] mt-[15vh]">
-          <svg
-            className="absolute top-0 left-0 w-full h-full"
-            viewBox="0 0 1000 200"
-            fill="none"
-            xmlns="http://www.w3.org/2000/svg"
-          >
-            <path
-              d="M0,100 C250,0 750,200 1000,100"
-              stroke="#66CC33"
-              strokeWidth="3"
-              strokeDasharray="8 5"
+
+     
+        <div className="md:hidden mt-8 space-y-8">
+          <div className="flex flex-col items-center text-center">
+            <div className="relative">
+              <p className="bg-lime-500 text-white rounded-full w-8 h-8 flex items-center justify-center absolute -top-4 right-0">1</p>
+              <img src={Pickup} alt="Pickup" className="h-[150px] rounded-full" />
+            </div>
+            <p className="font-bold mt-2">Schedule your pickup</p>
+            <p className="text-sm">Select a time that works best for you.</p>
+          </div>
+
+          <div className="flex flex-col items-center text-center">
+            <div className="relative">
+              <p className="bg-lime-500 text-white rounded-full w-8 h-8 flex items-center justify-center absolute -top-4 right-0">2</p>
+              <img src={Clean} alt="Clean" className="h-[150px] rounded-full" />
+            </div>
+            <p className="font-bold mt-2">We handle the cleaning</p>
+            <p className="text-sm">Our experts will wash and dry clean your fabrics.</p>
+          </div>
+
+          <div className="flex flex-col items-center text-center">
+            <div className="relative">
+              <p className="bg-lime-500 text-white rounded-full w-8 h-8 flex items-center justify-center absolute -top-4 right-0">3</p>
+              <img src={Deliver} alt="Deliver" className="h-[150px] rounded-full" />
+            </div>
+            <p className="font-bold mt-2">Enjoy fast delivery</p>
+            <p className="text-sm">Receive your freshly cleaned clothes right at home.</p>
+          </div>
+        </div>
+
+     
+        <div className="hidden md:block">
+          <div className="relative w-full h-40 bg-[#F7F7F7] mt-[15vh]">
+            <svg
+              className="absolute top-0 left-0 w-full h-full"
+              viewBox="0 0 1000 200"
               fill="none"
-            />
-          </svg>
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                d="M0,100 C250,0 750,200 1000,100"
+                stroke="#66CC33"
+                strokeWidth="3"
+                strokeDasharray="8 5"
+                fill="none"
+              />
+            </svg>
 
-          <div className="absolute left-[15%] top-[25%] -translate-x-1/2 -translate-y-1/2">
-            <p className="bg-lime-500 text-white  flex justify-center items-center rounded-full shadow-md w-8 h-8 z-10 absolute right-[5%] top-[25%]">
-              1
-            </p>
-            <img
-              src={Pickup}
-              alt="Pickup clothes image"
-              className="h-[200px] rounded-full"
-            />
+            <div className="absolute left-[15%] top-[25%] -translate-x-1/2 -translate-y-1/2">
+              <p className="bg-lime-500 text-white flex justify-center items-center rounded-full shadow-md w-8 h-8 z-10 absolute right-[5%] top-[25%]">
+                1
+              </p>
+              <img
+                src={Pickup}
+                alt="Pickup clothes image"
+                className="h-[200px] rounded-full "
+              />
+            </div>
+
+            <div className="absolute left-[45%] top-[25%] -translate-x-1/2 -translate-y-1/2">
+              <p className="bg-lime-500 text-white flex justify-center items-center rounded-full shadow-md w-8 h-8 z-10 absolute right-[5%] top-[25%]">
+                2
+              </p>
+              <img
+                src={Clean}
+                alt="clean clothes image"
+                className="h-[200px] rounded-full "
+              />
+            </div>
+
+            <div className="absolute right-[5%] top-[25%] -translate-x-1/2 -translate-y-1/2">
+              <p className="bg-lime-500 text-white flex justify-center items-center rounded-full shadow-md w-8 h-8 z-10 absolute right-[5%] top-[25%]">
+                3
+              </p>
+              <img
+                src={Deliver}
+                alt="Deliver clothes image"
+                className="h-[200px] rounded-full "
+              />
+            </div>
           </div>
 
-          <div className="absolute left-[45%] top-[25%] -translate-x-1/2 -translate-y-1/2">
-            <p className="bg-lime-500 text-white  flex justify-center items-center rounded-full shadow-md w-8 h-8 z-10 absolute right-[5%] top-[25%]">
-              2
-            </p>
-            <img
-              src={Clean}
-              alt="clean clothes image"
-              className="h-[200px] rounded-full"
-            />
-          </div>
-          <div className="absolute right-[5%] top-[25%] -translate-x-1/2 -translate-y-1/2">
-            <p className="bg-lime-500 text-white  flex justify-center items-center rounded-full shadow-md w-8 h-8 z-10 absolute right-[5%] top-[25%]">
-              3
-            </p>
-            <img
-              src={Deliver}
-              alt="Deliver clothes image"
-              className="h-[200px] rounded-full"
-            />
+         
+          <div className="flex items-center justify-around mt-10">
+            <div className="text-center w-1/3">
+              <p className="text-xl md:text-2xl font-bold">Schedule your pickup</p>
+              <p className="text-sm md:text-base mt-2">Select a time that works best for you.</p>
+            </div>
+            <div className="text-center w-1/3">
+              <p className="text-xl md:text-2xl font-bold">We handle the cleaning</p>
+              <p className="text-sm md:text-base mt-2">Our experts will wash and dry clean your fabrics.</p>
+            </div>
+            <div className="text-center w-1/3">
+              <p className="text-xl md:text-2xl font-bold">Enjoy fast delivery</p>
+              <p className="text-sm md:text-base mt-2">Receive your freshly cleaned clothes right at home.</p>
+            </div>
           </div>
         </div>
 
-        <div className="flex items-center justify-around">
-          <div className="text-center">
-            <p className="text-2xl font-bold">Schedule your pickup</p>
-            <p>Select a time that works best for you.</p>
-          </div>
-          <div className="text-center">
-            <p className="text-2xl font-bold">We handle the cleaning</p>
-            <p>Our experts will wash and dry clean your fabrics.</p>
-          </div>
-          <div className="text-center">
-            <p className="text-2xl font-bold">Enjoy fast delivery</p>
-            <p>Receive ypur freshly cleaned clothes rigth at home.</p>
-          </div>
-        </div>
-        <div className="text-center mt-[10vh]">
-          <button className="button m-[2rem] border-2 border-[#7ED321] p-[5px] rounded-[5px] hover:cursor-pointer shadow-lg ">
+        <div className="text-center mt-[5vh] md:mt-[10vh] space-y-4 md:space-y-0 md:space-x-4">
+          <button className="button border-2 border-[#7ED321] p-[5px] rounded-[5px] hover:cursor-pointer shadow-lg">
             Get Started
           </button>
           <button className="button hover:cursor-pointer">
@@ -179,18 +252,19 @@ const Home = () => {
           </button>
         </div>
       </section>
-      <section className="bg-white pt-[10vh]">
-        <div className="m-5 flex items-center justify-around gap-[5rem]">
-          <div>
-            <img src={Placeholder} alt="image" className="w-[40vw]" />
+
+     
+      <section className="bg-white pt-[5vh] md:pt-[10vh] px-4">
+        <div className="flex flex-col md:flex-row items-center justify-around gap-8 md:gap-[5rem]">
+          <div className="w-full md:w-[40vw]">
+            <img src={Placeholder} alt="testimonial" className="w-full" />
           </div>
-          <div>
-            <p className="text-2xl">{"⭐".repeat(5)}</p>
-            <p className="text-2xl font-bold">
-              "Fast, friendly, and eco-conscious! I recommend them to everyone I
-              know."
+          <div className="text-center md:text-left">
+            <p className="text-xl md:text-2xl">{"⭐".repeat(5)}</p>
+            <p className="text-xl md:text-2xl font-bold mt-4">
+              "Fast, friendly, and eco-conscious! I recommend them to everyone I know."
             </p>
-            <p className="font-bold mt-[5rem]">David Brown</p>
+            <p className="font-bold mt-8 md:mt-[5rem]">David Brown</p>
             <p>Tech Lead, Innovate</p>
           </div>
         </div>
