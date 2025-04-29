@@ -1,11 +1,19 @@
-import React from 'react'
+import React from 'react';
+import { Routes, Route } from 'react-router-dom';
+import UserDashboard from './DashboardHome';
+import MyOrders from './MyOrders';
+import SubscriptionPlans from './Subscription'
+import TrackOrder from './TrackOrder';
 
-const userDashboardRoute = () => {
+const UserDashboardRoute = () => {
   return (
-    <div className='h-100vh bg-red-600 mt-10 mb-10'>
-      hello user userDashboardRoute rout 
-    </div>
-  )
-}
+    <Routes>
+      <Route path="/" element={<UserDashboard />} />
+      <Route path="/my-orders" element={<MyOrders />} />
+      <Route path="/subscription-plan" element={<SubscriptionPlans />} />
+      <Route path="/track-order" element={<TrackOrder />} />
+</Routes>
+  );
+};
 
-export default userDashboardRoute
+export default UserDashboardRoute;
