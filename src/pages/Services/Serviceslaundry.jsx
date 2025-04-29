@@ -196,22 +196,58 @@ const Serviceslaundry = () => {
     }
   };
 
+  const [mobileFiltersVisible, setMobileFiltersVisible] = useState(false);
+  const [isMobile, setIsMobile] = useState(window.innerWidth < 768);
+
+  // Add a useEffect for detecting screen size changes
+  useEffect(() => {
+    const handleResize = () => {
+      setIsMobile(window.innerWidth < 768);
+      if (window.innerWidth >= 768) {
+        setMobileFiltersVisible(false);
+      }
+    };
+    
+    window.addEventListener('resize', handleResize);
+    return () => window.removeEventListener('resize', handleResize);
+  }, []);
+
   return (
-    <div className="container mx-auto px-4 py-16">
-      <h1 className="text-center font-bold text-5xl text-[#1F3C5F] mb-15">
+    <div className="container mx-auto px-4 sm:px-6 py-8 sm:py-12 md:py-16 mt-5 md:mt-0">
+      <h1 className="text-center font-bold text-3xl sm:text-4xl md:text-5xl text-[#1F3C5F] mb-6 sm:mb-10">
         Our Laundry Services
       </h1>
+
+      {/* Mobile filter toggle button - only visible on small screens */}
+      <button 
+        className="md:hidden w-full flex items-center justify-between bg-white border border-gray-300 rounded-md px-4 py-3 mb-4"
+        onClick={() => setMobileFiltersVisible(!mobileFiltersVisible)}
+      >
+        <div className="flex items-center">
+          <span className="mr-2">☰</span>
+          <span>Filters</span>
+          {Object.values(filters).some(val => Array.isArray(val) ? val.length > 0 : val > 0) && (
+            <span className="ml-2 bg-gray-200 rounded-full w-5 h-5 flex items-center justify-center text-xs">
+              {/* Count active filters */}
+              {Object.values(filters).reduce((count, val) => 
+                count + (Array.isArray(val) ? val.length : val > 0 ? 1 : 0), 0)}
+            </span>
+          )}
+        </div>
+        <FaChevronDown size={12} className={mobileFiltersVisible ? "transform rotate-180" : ""} />
+      </button>
+
       {/* Top filter bar */}
-      <div className="flex items-center justify-between mb-4">
-        <div className="flex items-center border border-gray-300 rounded-md px-3 py-2">
+      <div className="flex flex-col sm:flex-row items-stretch sm:items-center justify-between mb-4 gap-3 sm:gap-0">
+        <div className="hidden md:flex items-center border border-gray-300 rounded-md px-3 py-2">
           <span className="mr-2">☰</span>
           <span>Filter</span>
           <span className="ml-2 bg-gray-200 rounded-full w-5 h-5 flex items-center justify-center text-xs">
-            3
+            {/* Same count as above */}
           </span>
         </div>
 
-        <div className="flex-1 mx-4 relative">
+        <div className="flex-1 relative">
           <input
             type="text"
             placeholder="Wash & Fold"
@@ -222,9 +258,9 @@ const Serviceslaundry = () => {
 
         <div className="flex items-center">
           <span className="text-sm mr-2">Sort by:</span>
-          <div className="relative">
+          <div className="relative flex-grow sm:flex-grow-0">
             <select
-              className="bg-white border border-gray-300 rounded-md px-3 py-2 appearance-none pr-8"
+              className="w-full sm:w-auto bg-white border border-gray-300 rounded-md px-3 py-2 appearance-none pr-8"
               onChange={handleSortChange}
             >
               <option>Trending</option>
@@ -237,27 +273,27 @@ const Serviceslaundry = () => {
         </div>
       </div>
 
-      {/* Suggestions bar */}
-      <div className="flex items-center text-sm mb-5">
-        <span className="text-gray-500 mr-2">Suggestion:</span>
-        <span className="bg-gray-100 rounded-full px-3 py-1 mr-2">
+      {/* Suggestions bar - make scrollable on mobile */}
+      <div className="flex items-center text-sm mb-5 overflow-x-auto pb-2 -mx-4 px-4">
+        <span className="text-gray-500 mr-2 whitespace-nowrap">Suggestion:</span>
+        <span className="bg-gray-100 rounded-full px-3 py-1 mr-2 whitespace-nowrap">
           Normal wash
         </span>
-        <span className="bg-gray-100 rounded-full px-3 py-1 mr-2">
+        <span className="bg-gray-100 rounded-full px-3 py-1 mr-2 whitespace-nowrap">
           Regular Wash & Fold
         </span>
-        <span className="bg-gray-100 rounded-full px-3 py-1 mr-2">
+        <span className="bg-gray-100 rounded-full px-3 py-1 mr-2 whitespace-nowrap">
           Premium Wash & Fold
         </span>
-        <span className="ml-auto text-xs text-gray-500">
+        <span className="ml-auto text-xs text-gray-500 whitespace-nowrap">
           <b>{filterdData.length}</b> results found{" "}
         </span>
       </div>
 
       {/* Main content area */}
-      <div className="flex gap-6">
-        {/* Left sidebar filters */}
-        <div className="w-64 flex-shrink-0">
+      <div className="flex flex-col md:flex-row gap-6">
+        {/* Left sidebar filters - conditionally show on mobile */}
+        <div className={`${mobileFiltersVisible ? 'block' : 'hidden'} md:block w-full md:w-64 md:flex-shrink-0 transition-all duration-300 mb-4 md:mb-0`}>
           {/* Name Type Filter */}
           <div className="mb-4 border border-gray-200 rounded-lg overflow-hidden">
             <div
@@ -535,10 +571,72 @@ const Serviceslaundry = () => {
               </div>
             )}
           </div>
+          <button
+            className="w-full mt-2 flex items-center justify-center gap-2 bg-blue-50 hover:bg-blue-100 text-blue-800 font-medium py-2.5 px-4 rounded-md border border-blue-200 transition duration-200 ease-in-out"
+            onClick={() => {
+              // Reset filters state
+              setFilters({
+                name: [],
+                category: [],
+                fabricType: [],
+                rating: 0,
+                serviceMode: [],
+                deliveryTime: [],
+                minimumPrice: 0,
+              });
+
+              // Reset checkbox and radio inputs
+              const checkboxes = document.querySelectorAll(
+                'input[type="checkbox"]'
+              );
+              checkboxes.forEach((checkbox) => {
+                checkbox.checked = false;
+              });
+
+              const radioButtons = document.querySelectorAll(
+                'input[type="radio"]'
+              );
+              radioButtons.forEach((radio) => {
+                radio.checked = false;
+              });
+
+              // Reset range sliders
+              const rangeInputs = document.querySelectorAll(
+                'input[type="range"]'
+              );
+              rangeInputs.forEach((range) => {
+                range.value = range.min || 0;
+              });
+
+              // Reset text inputs (except search)
+              const textInputs = document.querySelectorAll(
+                '.px-4.py-2 input[type="text"]'
+              );
+              textInputs.forEach((input) => {
+                input.value = "";
+              });
+            }}
+          >
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              className="h-4 w-4"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke="currentColor"
+            >
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth={2}
+                d="M6 18L18 6M6 6l12 12"
+              />
+            </svg>
+            Clear filters
+          </button>
         </div>
 
         {/* Main content area with service cards */}
-        <div className="flex-1 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        <div className="flex-1 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6">
           {filterdData
             .slice((currentPage - 1) * itemsPerPage, currentPage * itemsPerPage)
             .map((item) => (
@@ -609,9 +707,9 @@ const Serviceslaundry = () => {
         </div>
       </div>
 
-      {/* Pagination */}
-      <div className="flex justify-center mt-10 items-center">
-        {/* Calculate pagination info */}
+      {/* Pagination - adjust for mobile */}
+      <div className="flex justify-center mt-6 sm:mt-10 items-center overflow-x-auto py-2">
+        {/* Adjust the inner content for better mobile display */}
         {(() => {
           const totalItems = filterdData.length;
           const totalPages = Math.ceil(totalItems / itemsPerPage);
@@ -655,46 +753,55 @@ const Serviceslaundry = () => {
                 &lt;
               </button>
 
-              {/* First page button (if not visible in current range) */}
-              {startPage > 1 && (
+              {/* On mobile, show fewer page numbers */}
+              {isMobile ? (
+                <div className="mx-2 text-sm">
+                  Page {currentPage} of {totalPages}
+                </div>
+              ) : (
                 <>
-                  <button
-                    className="flex items-center justify-center w-8 h-8 rounded-full border border-gray-300 mx-1 hover:bg-gray-100"
-                    onClick={() => handlePageChange(1)}
-                  >
-                    01
-                  </button>
-                  {startPage > 2 && <span className="mx-1">...</span>}
-                </>
-              )}
-
-              {/* Page number buttons */}
-              {pageNumbers.map((number) => (
-                <button
-                  key={number}
-                  className={`flex items-center justify-center w-8 h-8 rounded-full mx-1 ${
-                    currentPage === number
-                      ? "bg-blue-900 text-white"
-                      : "border border-gray-300 hover:bg-gray-100"
-                  }`}
-                  onClick={() => handlePageChange(number)}
-                >
-                  {number.toString().padStart(2, "0")}
-                </button>
-              ))}
-
-              {/* Last page button (if not visible in current range) */}
-              {endPage < totalPages && (
-                <>
-                  {endPage < totalPages - 1 && (
-                    <span className="mx-1">...</span>
+                  {/* First page button (if not visible in current range) */}
+                  {startPage > 1 && (
+                    <>
+                      <button
+                        className="flex items-center justify-center w-8 h-8 rounded-full border border-gray-300 mx-1 hover:bg-gray-100"
+                        onClick={() => handlePageChange(1)}
+                      >
+                        01
+                      </button>
+                      {startPage > 2 && <span className="mx-1">...</span>}
+                    </>
                   )}
-                  <button
-                    className="flex items-center justify-center w-8 h-8 rounded-full border border-gray-300 mx-1 hover:bg-gray-100"
-                    onClick={() => handlePageChange(totalPages)}
-                  >
-                    {totalPages.toString().padStart(2, "0")}
-                  </button>
+
+                  {/* Page number buttons */}
+                  {pageNumbers.map((number) => (
+                    <button
+                      key={number}
+                      className={`flex items-center justify-center w-8 h-8 rounded-full mx-1 ${
+                        currentPage === number
+                          ? "bg-blue-900 text-white"
+                          : "border border-gray-300 hover:bg-gray-100"
+                      }`}
+                      onClick={() => handlePageChange(number)}
+                    >
+                      {number.toString().padStart(2, "0")}
+                    </button>
+                  ))}
+
+                  {/* Last page button (if not visible in current range) */}
+                  {endPage < totalPages && (
+                    <>
+                      {endPage < totalPages - 1 && (
+                        <span className="mx-1">...</span>
+                      )}
+                      <button
+                        className="flex items-center justify-center w-8 h-8 rounded-full border border-gray-300 mx-1 hover:bg-gray-100"
+                        onClick={() => handlePageChange(totalPages)}
+                      >
+                        {totalPages.toString().padStart(2, "0")}
+                      </button>
+                    </>
+                  )}
                 </>
               )}
 
