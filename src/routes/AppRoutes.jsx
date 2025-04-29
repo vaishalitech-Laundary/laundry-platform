@@ -13,7 +13,7 @@ const AppRoutes = () => {
       <Route path="/" element={<Home />} />
       <Route path="/login" element={<Login />} />
       <Route path="/services" element={<Services />} />
-      <Route path="/user-dashboard" element={<UserDashboardRoute />} />
+      <Route path="/user-dashboard/*" element={<UserDashboardRoute />} />
 
       <Route path="*" element={<div className="p-6 text-center">404 - Page Not Found</div>} />
 
