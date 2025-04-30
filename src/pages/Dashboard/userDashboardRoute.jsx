@@ -2,7 +2,7 @@ import React from 'react';
 import { Routes, Route } from 'react-router-dom';
 import UserDashboard from './DashboardHome';
 import MyOrders from './MyOrders';
-import SubscriptionPlans from './Subscription'
+import SubscriptionPlans from './Subscription';
 import TrackOrder from './TrackOrder';
 
 const UserDashboardRoute = () => {
