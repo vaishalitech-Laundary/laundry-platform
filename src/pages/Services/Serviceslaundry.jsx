@@ -14,7 +14,7 @@ import { set } from "react-hook-form";
 const Serviceslaundry = () => {
   const [currentPage, setCurrentPage] = useState(1);
   const [itemsPerPage] = useState(12);
-
+  const [filterCount, setFilterCount] = useState(0);
   const [filterdData, setFilterdData] = useState(data);
   const [filters, setFilters] = useState({
     name: [],
@@ -77,7 +77,7 @@ const Serviceslaundry = () => {
   const handleFilterChange = (e) => {
     const { name, value, checked } = e.target;
 
-    console.log(name, value, checked);
+    // console.log(name, value, checked);
     if (name === "rating") {
       setFilters((prev) => ({
         ...prev,
@@ -141,6 +141,16 @@ const Serviceslaundry = () => {
     });
     setFilterdData(tempdata.filter((item) => item !== null));
     setCurrentPage(1);
+
+    let val = 0;
+    for (let key in filters) {
+      if (Array.isArray(filters[key])) {
+        val += filters[key].length;
+      } else if (filters[key] > 0) {
+        val += 1;
+      }
+    }
+    setFilterCount(val);
   }, [filters]);
 
   const [favorites, setFavorites] = useState({});
@@ -207,9 +217,9 @@ const Serviceslaundry = () => {
         setMobileFiltersVisible(false);
       }
     };
-    
-    window.addEventListener('resize', handleResize);
-    return () => window.removeEventListener('resize', handleResize);
+
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
   }, []);
 
   return (
@@ -219,31 +229,39 @@ const Serviceslaundry = () => {
       </h1>
 
       {/* Mobile filter toggle button - only visible on small screens */}
-      <button 
+      <button
         className="md:hidden w-full flex items-center justify-between bg-white border border-gray-300 rounded-md px-4 py-3 mb-4"
         onClick={() => setMobileFiltersVisible(!mobileFiltersVisible)}
       >
         <div className="flex items-center">
           <span className="mr-2">☰</span>
           <span>Filters</span>
-          {Object.values(filters).some(val => Array.isArray(val) ? val.length > 0 : val > 0) && (
+          {Object.values(filters).some((val) =>
+            Array.isArray(val) ? val.length > 0 : val > 0
+          ) && (
             <span className="ml-2 bg-gray-200 rounded-full w-5 h-5 flex items-center justify-center text-xs">
               {/* Count active filters */}
-              {Object.values(filters).reduce((count, val) => 
-                count + (Array.isArray(val) ? val.length : val > 0 ? 1 : 0), 0)}
+              {Object.values(filters).reduce(
+                (count, val) =>
+                  count + (Array.isArray(val) ? val.length : val > 0 ? 1 : 0),
+                0
+              )}
             </span>
           )}
         </div>
-        <FaChevronDown size={12} className={mobileFiltersVisible ? "transform rotate-180" : ""} />
+        <FaChevronDown
+          size={12}
+          className={mobileFiltersVisible ? "transform rotate-180" : ""}
+        />
       </button>
 
       {/* Top filter bar */}
-      <div className="flex flex-col sm:flex-row items-stretch sm:items-center justify-between mb-4 gap-3 sm:gap-0">
+      <div className="flex flex-col sm:flex-row items-stretch sm:items-center justify-between mb-4 gap-3">
         <div className="hidden md:flex items-center border border-gray-300 rounded-md px-3 py-2">
           <span className="mr-2">☰</span>
           <span>Filter</span>
           <span className="ml-2 bg-gray-200 rounded-full w-5 h-5 flex items-center justify-center text-xs">
-            {/* Same count as above */}
+            {filterCount}
           </span>
         </div>
 
@@ -275,16 +293,31 @@ const Serviceslaundry = () => {
 
       {/* Suggestions bar - make scrollable on mobile */}
       <div className="flex items-center text-sm mb-5 overflow-x-auto pb-2 -mx-4 px-4">
-        <span className="text-gray-500 mr-2 whitespace-nowrap">Suggestion:</span>
-        <span className="bg-gray-100 rounded-full px-3 py-1 mr-2 whitespace-nowrap">
-          Normal wash
+        <span className="text-gray-500 mr-2 whitespace-nowrap">
+          Suggestion:
         </span>
-        <span className="bg-gray-100 rounded-full px-3 py-1 mr-2 whitespace-nowrap">
-          Regular Wash & Fold
-        </span>
-        <span className="bg-gray-100 rounded-full px-3 py-1 mr-2 whitespace-nowrap">
-          Premium Wash & Fold
-        </span>
+        {name.slice(0, 4).map((item, index) => {
+          return (
+            <button
+              key={index}
+              className={`rounded-full px-3 py-1 mr-2 whitespace-nowrap cursor-pointer ${
+                filters.name.includes(item)
+                  ? "bg-blue-500 text-white"
+                  : "text-gray-700 bg-gray-100"
+              }`}
+              onClick={() => {
+                setFilters((prev) => ({
+                  ...prev,
+                  name: filters.name.includes(item)
+                    ? prev.name.filter((filterItem) => filterItem !== item)
+                    : [...prev.name, item],
+                }));
+              }}
+            >
+              {item}
+            </button>
+          );
+        })}
         <span className="ml-auto text-xs text-gray-500 whitespace-nowrap">
           <b>{filterdData.length}</b> results found{" "}
         </span>
@@ -293,7 +326,11 @@ const Serviceslaundry = () => {
       {/* Main content area */}
       <div className="flex flex-col md:flex-row gap-6">
         {/* Left sidebar filters - conditionally show on mobile */}
-        <div className={`${mobileFiltersVisible ? 'block' : 'hidden'} md:block w-full md:w-64 md:flex-shrink-0 transition-all duration-300 mb-4 md:mb-0`}>
+        <div
+          className={`${
+            mobileFiltersVisible ? "block" : "hidden"
+          } md:block w-full md:w-64 md:flex-shrink-0 transition-all duration-300 mb-4 md:mb-0`}
+        >
           {/* Name Type Filter */}
           <div className="mb-4 border border-gray-200 rounded-lg overflow-hidden">
             <div
@@ -420,6 +457,7 @@ const Serviceslaundry = () => {
             </div>
 
             {expandedCategories["RATING"] && (
+              <>
               <div className="px-4 py-2">
                 {rating.map((rating) => (
                   <div
@@ -443,6 +481,26 @@ const Serviceslaundry = () => {
                   </div>
                 ))}
               </div>
+            <button
+              className="mt-2 px-4 py-2 bg-blue-500 text-white rounded-md hover:bg-red-600 transition duration-200 ease-in-out"
+              onClick={() => {
+                setFilters((prev) => ({
+                  ...prev,
+                  rating: 0,
+                }));
+
+                // Reset radio buttons for rating
+                const ratingRadios = document.querySelectorAll(
+                  'input[name="rating"]'
+                );
+                ratingRadios.forEach((radio) => {
+                  radio.checked = false;
+                });
+              }}
+            >
+              Remove Rating Filter
+            </button>
+            </>
             )}
           </div>
 
