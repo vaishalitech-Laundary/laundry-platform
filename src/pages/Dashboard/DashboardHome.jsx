@@ -15,6 +15,8 @@ import {
 import { Link } from 'react-router-dom';
 import longImage from '../../assets/Long.png';
 import { Plus, Minus } from 'lucide-react'; // Import the icons
+import {  Outlet } from 'react-router-dom';
+
 
 
 
@@ -117,6 +119,7 @@ const UserDashboard = () => {
 
       {/* Main Content */}
       <main className="flex-1 bg-[#F9FAFB] p-6 sm:p-10 overflow-x-auto min-h-screen">
+        
         {/* Top Header */}
         <div className="bg-white rounded-tl-lg rounded-tr-lg flex flex-col sm:flex-row justify-between items-start sm:items-center py-3 px-6 sm:px-8 mb-6 gap-2">
           <div className="flex items-start sm:items-center">
