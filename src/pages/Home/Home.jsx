@@ -1,4 +1,6 @@
 import React from "react";
+
+import { useState, useEffect } from "react";
 import Rec1 from "../../assets/Rectangle 1.png";
 import Rec2 from "../../assets/Rectangle 2.png";
 import Rec3 from "../../assets/Rectangle 3.png";
@@ -14,9 +16,36 @@ import Clean from "../../assets/Clean.png";
 import Deliver from "../../assets/Deliver.png";
 
 const Home = () => {
+  const testimonials = [
+    {
+      text: "Fast, friendly, and eco-conscious! I recommend them to everyone I know.",
+      name: "David Brown",
+      role: "Tech Lead, Innovate",
+    },
+    {
+      text: "Exceptional service and super reliable. Love the team!",
+      name: "Emily Smith",
+      role: "Product Manager, EcoDrive",
+    },
+    {
+      text: "Professional and efficient from start to finish.",
+      name: "Michael Johnson",
+      role: "Founder, GreenWorld",
+    },
+  ];
+
+  const [index, setIndex] = useState(0);
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setIndex((prev) => (prev + 1) % testimonials.length);
+    }, 4000); // 4 seconds per testimonial
+
+    return () => clearInterval(interval);
+  }, []);
+
   return (
     <div className="bg-[#F7F7F7] mt-auto">
-
       <section className="px-4 md:px-8 lg:px-16">
         <h1 className="text-center pt-[5vh] md:pt-[10vh] w-full md:w-[70vw] text-3xl md:text-5xl lg:text-6xl text-[#1F3C5F] font-extrabold mx-auto">
           Hassle-Free Laundry Service at Your Doorstep!
@@ -33,39 +62,40 @@ const Home = () => {
         <div className="container mx-auto">
           <div className="grid grid-cols-2 md:grid-cols-4 gap-2 md:gap-4 mt-[4vh] md:mt-[7vh]">
             <div className="aspect-w-16 aspect-h-9 w-full">
-              <img 
-                src={Rec1} 
-                alt="Laundry Service" 
-                className="w-full h-[150px] xs:h-[180px] sm:h-[220px] md:h-[280px] lg:h-[320px] xl:h-[400px] object-cover rounded-lg shadow-md" 
+              <img
+                src={Rec1}
+                alt="Laundry Service"
+                className="w-full h-[150px] xs:h-[180px] sm:h-[220px] md:h-[280px] lg:h-[320px] xl:h-[400px] object-cover rounded-lg shadow-md"
               />
             </div>
             <div className="aspect-w-16 aspect-h-9 w-full">
-              <img 
-                src={Rec2} 
-                alt="Cleaning Process" 
-                className="w-full h-[150px] xs:h-[180px] sm:h-[220px] md:h-[280px] lg:h-[320px] xl:h-[400px] object-cover rounded-lg shadow-md" 
+              <img
+                src={Rec2}
+                alt="Cleaning Process"
+                className="w-full h-[150px] xs:h-[180px] sm:h-[220px] md:h-[280px] lg:h-[320px] xl:h-[400px] object-cover rounded-lg shadow-md"
               />
             </div>
             <div className="aspect-w-16 aspect-h-9 w-full">
-              <img 
-                src={Rec3} 
-                alt="Delivery Service" 
-                className="w-full h-[150px] xs:h-[180px] sm:h-[220px] md:h-[280px] lg:h-[320px] xl:h-[400px] object-cover rounded-lg shadow-md" 
+              <img
+                src={Rec3}
+                alt="Delivery Service"
+                className="w-full h-[150px] xs:h-[180px] sm:h-[220px] md:h-[280px] lg:h-[320px] xl:h-[400px] object-cover rounded-lg shadow-md"
               />
             </div>
             <div className="aspect-w-16 aspect-h-9 w-full">
-              <img 
-                src={Rec4} 
-                alt="Quality Service" 
-                className="w-full h-[150px] xs:h-[180px] sm:h-[220px] md:h-[280px] lg:h-[320px] xl:h-[400px] object-cover rounded-lg shadow-md" 
+              <img
+                src={Rec4}
+                alt="Quality Service"
+                className="w-full h-[150px] xs:h-[180px] sm:h-[220px] md:h-[280px] lg:h-[320px] xl:h-[400px] object-cover rounded-lg shadow-md"
               />
             </div>
           </div>
         </div>
       </section>
 
-      
-      <section className="bg-white p-4 md:p-6 lg:p-8 min-h-screen">
+      <section className="bg-white p-4 md:p-6 lg:p-8 min-h-screen relative overflow-hidden">
+        <div className="hidden sm:block  absolute top-0 right-0 translate-x-1/2 w-[150px] md:w-[200px] h-[60px] md:h-[95px] bg-[#1F3C5F] rounded-b-full "></div>
+
         <div className="pt-[4vh] md:pt-[8vh]">
           <h1 className="text-2xl md:text-4xl text-[#1F3C5F] text-center font-extrabold">
             Why Our Laundry Service Stands Out
@@ -79,10 +109,10 @@ const Home = () => {
         <div className="flex flex-col md:flex-row items-center justify-center gap-8 md:gap-5 mt-[5vh] md:mt-[10vh]">
           <div className="text-center w-full md:w-1/3 px-4">
             <div className="flex items-center justify-center mb-4 md:mb-[2rem] rounded-lg shadow-md">
-              <img 
-                src={Laundry3} 
+              <img
+                src={Laundry3}
                 alt="Pickup and Delivery Service"
-                className="w-full h-[200px] sm:h-[250px] md:h-[300px] object-cover rounded-lg" 
+                className="w-full h-[200px] sm:h-[250px] md:h-[300px] object-cover rounded-lg"
               />
             </div>
             <h3 className="text-[#1F3C5F] font-bold text-xl md:text-2xl lg:text-3xl mb-2">
@@ -95,10 +125,10 @@ const Home = () => {
 
           <div className="text-center w-full md:w-1/3 px-4">
             <div className="flex items-center justify-center mb-4 md:mb-[2rem] rounded-lg shadow-md">
-              <img 
-                src={Laundry2} 
+              <img
+                src={Laundry2}
                 alt="Affordable Pricing"
-                className="w-full h-[200px] sm:h-[250px] md:h-[300px] object-cover rounded-lg" 
+                className="w-full h-[200px] sm:h-[250px] md:h-[300px] object-cover rounded-lg"
               />
             </div>
             <h3 className="text-[#1F3C5F] font-bold text-xl md:text-2xl lg:text-3xl mb-2">
@@ -111,10 +141,10 @@ const Home = () => {
 
           <div className="text-center w-full md:w-1/3 px-4">
             <div className="flex items-center justify-center mb-4 md:mb-[2rem] rounded-lg shadow-md">
-              <img 
-                src={Laundry1} 
+              <img
+                src={Laundry1}
                 alt="Eco-Friendly Cleaning"
-                className="w-full h-[200px] sm:h-[250px] md:h-[300px] object-cover rounded-lg" 
+                className="w-full h-[200px] sm:h-[250px] md:h-[300px] object-cover rounded-lg"
               />
             </div>
             <h3 className="text-[#1F3C5F] font-bold text-xl md:text-2xl lg:text-3xl mb-2">
@@ -133,8 +163,13 @@ const Home = () => {
         </div>
       </section>
 
-   
-      <section className="pt-[4vh] md:pt-[8vh] min-h-screen px-4">
+      <section className="pt-[4vh] md:pt-[8vh] md:pb-[10vh] min-h-screen px-4 relative">
+        <div className="hidden sm:block absolute bottom-40 left-0">
+          <div className="relative">
+            <div className="absolute w-[150px] h-[150px] border-20 border-[#7ED321] rounded-full  translate-x-[-40%]"></div>
+          </div>
+        </div>
+
         <div className="text-center">
           <h1 className="text-2xl md:text-4xl text-[#1F3C5F] font-bold">
             Simple Steps to Fresh, Clean Laundry
@@ -144,12 +179,17 @@ const Home = () => {
           </p>
         </div>
 
-     
         <div className="md:hidden mt-8 space-y-8">
           <div className="flex flex-col items-center text-center">
             <div className="relative">
-              <p className="bg-lime-500 text-white rounded-full w-8 h-8 flex items-center justify-center absolute -top-4 right-0">1</p>
-              <img src={Pickup} alt="Pickup" className="h-[150px] rounded-full" />
+              <p className="bg-lime-500 text-white rounded-full w-8 h-8 flex items-center justify-center absolute -top-4 right-0">
+                1
+              </p>
+              <img
+                src={Pickup}
+                alt="Pickup"
+                className="h-[150px] rounded-full"
+              />
             </div>
             <p className="font-bold mt-2">Schedule your pickup</p>
             <p className="text-sm">Select a time that works best for you.</p>
@@ -157,24 +197,35 @@ const Home = () => {
 
           <div className="flex flex-col items-center text-center">
             <div className="relative">
-              <p className="bg-lime-500 text-white rounded-full w-8 h-8 flex items-center justify-center absolute -top-4 right-0">2</p>
+              <p className="bg-lime-500 text-white rounded-full w-8 h-8 flex items-center justify-center absolute -top-4 right-0">
+                2
+              </p>
               <img src={Clean} alt="Clean" className="h-[150px] rounded-full" />
             </div>
             <p className="font-bold mt-2">We handle the cleaning</p>
-            <p className="text-sm">Our experts will wash and dry clean your fabrics.</p>
+            <p className="text-sm">
+              Our experts will wash and dry clean your fabrics.
+            </p>
           </div>
 
           <div className="flex flex-col items-center text-center">
             <div className="relative">
-              <p className="bg-lime-500 text-white rounded-full w-8 h-8 flex items-center justify-center absolute -top-4 right-0">3</p>
-              <img src={Deliver} alt="Deliver" className="h-[150px] rounded-full" />
+              <p className="bg-lime-500 text-white rounded-full w-8 h-8 flex items-center justify-center absolute -top-4 right-0">
+                3
+              </p>
+              <img
+                src={Deliver}
+                alt="Deliver"
+                className="h-[150px] rounded-full"
+              />
             </div>
             <p className="font-bold mt-2">Enjoy fast delivery</p>
-            <p className="text-sm">Receive your freshly cleaned clothes right at home.</p>
+            <p className="text-sm">
+              Receive your freshly cleaned clothes right at home.
+            </p>
           </div>
         </div>
 
-     
         <div className="hidden md:block">
           <div className="relative w-full h-40 bg-[#F7F7F7] mt-[15vh]">
             <svg
@@ -184,10 +235,10 @@ const Home = () => {
               xmlns="http://www.w3.org/2000/svg"
             >
               <path
-                d="M0,100 C250,0 750,200 1000,100"
+                d="M0,100 C150,0 800,200 1050,100"
                 stroke="#66CC33"
                 strokeWidth="3"
-                strokeDasharray="8 5"
+                strokeDasharray="5 2"
                 fill="none"
               />
             </svg>
@@ -226,19 +277,30 @@ const Home = () => {
             </div>
           </div>
 
-         
           <div className="flex items-center justify-around mt-10">
             <div className="text-center w-1/3">
-              <p className="text-xl md:text-2xl font-bold">Schedule your pickup</p>
-              <p className="text-sm md:text-base mt-2">Select a time that works best for you.</p>
+              <p className="text-xl md:text-2xl font-bold">
+                Schedule your pickup
+              </p>
+              <p className="text-sm md:text-base mt-2">
+                Select a time that works best for you.
+              </p>
             </div>
             <div className="text-center w-1/3">
-              <p className="text-xl md:text-2xl font-bold">We handle the cleaning</p>
-              <p className="text-sm md:text-base mt-2">Our experts will wash and dry clean your fabrics.</p>
+              <p className="text-xl md:text-2xl font-bold">
+                We handle the cleaning
+              </p>
+              <p className="text-sm md:text-base mt-2">
+                Our experts will wash and dry clean your fabrics.
+              </p>
             </div>
             <div className="text-center w-1/3">
-              <p className="text-xl md:text-2xl font-bold">Enjoy fast delivery</p>
-              <p className="text-sm md:text-base mt-2">Receive your freshly cleaned clothes right at home.</p>
+              <p className="text-xl md:text-2xl font-bold">
+                Enjoy fast delivery
+              </p>
+              <p className="text-sm md:text-base mt-2">
+                Receive your freshly cleaned clothes right at home.
+              </p>
             </div>
           </div>
         </div>
@@ -253,19 +315,22 @@ const Home = () => {
         </div>
       </section>
 
-     
-      <section className="bg-white pt-[5vh] md:pt-[10vh] px-4">
+      <section className="bg-white p-[5vh] md:pt-[10vh] md:pb-[4vh] px-4 transition-all duration-500 relative overflow-hidden">
+        <div className="hidden sm:block  absolute top-0 right-0 translate-x-1/2 w-[150px] md:w-[200px] h-[60px] md:h-[95px] bg-[#1F3C5F] rounded-b-full "></div>
+
         <div className="flex flex-col md:flex-row items-center justify-around gap-8 md:gap-[5rem]">
           <div className="w-full md:w-[40vw]">
             <img src={Placeholder} alt="testimonial" className="w-full" />
           </div>
-          <div className="text-center md:text-left">
+          <div className="text-center md:text-left max-w-xl">
             <p className="text-xl md:text-2xl">{"⭐".repeat(5)}</p>
             <p className="text-xl md:text-2xl font-bold mt-4">
-              "Fast, friendly, and eco-conscious! I recommend them to everyone I know."
+              "{testimonials[index].text}"
             </p>
-            <p className="font-bold mt-8 md:mt-[5rem]">David Brown</p>
-            <p>Tech Lead, Innovate</p>
+            <p className="font-bold mt-8 md:mt-[5rem]">
+              {testimonials[index].name}
+            </p>
+            <p>{testimonials[index].role}</p>
           </div>
         </div>
       </section>
