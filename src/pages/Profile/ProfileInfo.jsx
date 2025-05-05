@@ -15,7 +15,7 @@ const ProfileInfo = () => {
       </div>
       
       {/* Main content */}
-      <div className="flex-1 bg-white rounded-lg shadow-sm p-6 pr-50">
+      <div className="flex-1 bg-white rounded-lg shadow-sm p-6 lg:pr-50">
         <h1 className="text-2xl font-bold text-gray-800">Profile</h1>
         <p className="text-gray-500 mb-6">This is how others will see you on the site.</p>
         

@@ -15,7 +15,7 @@ const AccountSettings = () => {
           </div>
           
           {/* Main content */}
-          <div className="flex-1 bg-white rounded-lg shadow-sm p-6 pr-90">
+          <div className="flex-1 bg-white rounded-lg shadow-sm p-6 lg:pr-90">
             <h1 className="text-2xl font-bold text-gray-800">Account</h1>
             <p className="text-gray-500 mb-8">Update your account settings. Set your preferred language and timezone.</p>
             
