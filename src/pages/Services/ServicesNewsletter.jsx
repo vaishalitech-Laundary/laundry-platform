@@ -1,9 +1,9 @@
-import React from 'react';
+import React from "react";
 
 const ServicesNewsletter = () => {
   return (
     // Increased vertical padding significantly
-    <div className="bg-white py-20 px-4 md:px-8 lg:px-16 flex items-center min-h-[300px]">
+    <div className="bg-white py-20 px-4 md:px-8 lg:px-16 flex items-center min-h-[300px] max-w-[1440px] mx-auto">
       <div className="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center gap-10 w-full">
         {/* Left Side: Text Content */}
         <div className="md:w-1/2 text-center md:text-left">
@@ -34,7 +34,7 @@ const ServicesNewsletter = () => {
             </button>
           </div>
           {/* Increased text size */}
-          <p className="text-sm text-gray-500 text-center sm:text-left">
+          <p className="text-sm text-black text-center sm:text-left">
             By clicking Join Us, you agree to our Terms and Conditions.
           </p>
         </div>
