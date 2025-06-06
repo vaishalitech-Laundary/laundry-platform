@@ -31,7 +31,7 @@ const faqData = [
 
 const FaqItem = ({ faq, isOpen, onClick }) => {
   return (
-    <div className="border-t border-b border-gray-600 py-5">
+    <div className="border-t border-b border-gray-600 py-5 cursor-pointer">
       <button
         className="flex justify-between items-center w-full text-left"
         onClick={onClick}
