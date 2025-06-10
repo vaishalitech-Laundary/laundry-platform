@@ -12,7 +12,7 @@ const ProfileRoutes = () => {
     <>
       <button 
         onClick={() => navigate(-1)} 
-        className="cursor-pointer mb-4 px-4 py-2 flex items-center text-gray-700 hover:text-gray-900 transition-colors"
+        className="cursor-pointer mb-4 px-4 py-2 ml-20 flex items-center text-gray-700 hover:text-gray-900 transition-colors"
       >
         <FaArrowLeft className="mr-2" /> Back
       </button>

@@ -23,7 +23,7 @@ const Notification = () => {
           
           {/* Main content */}
           <div className="flex-1 bg-white rounded-lg shadow-sm p-6 lg:pr-60">
-            <h1 className="text-2xl font-bold text-gray-800">Notifications</h1>
+            <h1 className="text-2xl font-medium text-gray-800">Notifications</h1>
             <p className="text-gray-500 mb-8">Configure how you receive notifications.</p>
             
             <div className="border-t border-gray-200 pt-6"></div>
@@ -42,7 +42,7 @@ const Notification = () => {
                     onChange={() => setNotifyAbout('personal')}
                     className="h-4 w-4 text-blue-600"
                   />
-                  <span className="ml-2 text-gray-700">Personal Reminders</span>
+                  <span className="ml-2 text-black">Personal Reminders</span>
                 </label>
                 
                 <label className="flex items-center">
@@ -54,7 +54,7 @@ const Notification = () => {
                     onChange={() => setNotifyAbout('order')}
                     className="h-4 w-4 text-blue-600"
                   />
-                  <span className="ml-2 text-gray-700">Order Updates</span>
+                  <span className="ml-2 text-black">Order Updates</span>
                 </label>
                 
                 <label className="flex items-center">
@@ -66,7 +66,7 @@ const Notification = () => {
                     onChange={() => setNotifyAbout('payment')}
                     className="h-4 w-4 text-blue-600"
                   />
-                  <span className="ml-2 text-gray-700">Payment Updates</span>
+                  <span className="ml-2 text-black">Payment Updates</span>
                 </label>
               </div>
             </div>

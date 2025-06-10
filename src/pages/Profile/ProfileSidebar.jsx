@@ -27,7 +27,7 @@ const ProfileSidebar = () => {
   ];
   
   return (
-    <div className="bg-white rounded-lg overflow-hidden w-full md:w-64 shadow-sm border border-gray-200">
+    <div className="bg-white rounded-lg overflow-hidden w-full mr-10 md:w-64 shadow-sm border border-gray-200">
       <nav className="flex flex-col">
         {navItems.map((item, index) => (
           <NavLink 
@@ -36,15 +36,15 @@ const ProfileSidebar = () => {
             end={item.end}
             className={({ isActive }) => 
               `${linkClass} ${isActive 
-                ? 'bg-[#1F3C5F] text-white font-medium' 
-                : 'bg-white text-gray-700 hover:bg-gray-100'}`
+                ? 'bg-gray-100 text-black font-medium' 
+                : 'bg-white text-black hover:bg-gray-100'}`
             }
           >
             {({ isActive }) => {
               const Icon = item.icon;
               return (
                 <>
-                  <Icon className={`mr-3 ${isActive ? 'text-white' : 'text-gray-500'}`} /> 
+                  <Icon className={`mr-3 ${isActive ? 'text-black' : 'text-gray-500'}`} /> 
                   {item.name}
                 </>
               );
