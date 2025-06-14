@@ -7,6 +7,7 @@ import {
   FaSearch,
   FaChevronRight,
 } from "react-icons/fa";
+import { ArrowLeft, ArrowRight } from "lucide-react";
 
 import data from "./serviceData.json";
 import { set } from "react-hook-form";
@@ -16,6 +17,7 @@ const Serviceslaundry = () => {
   const [itemsPerPage] = useState(12);
   const [filterCount, setFilterCount] = useState(0);
   const [filterdData, setFilterdData] = useState(data);
+  const [query, setQuery] = useState("");
   const [filters, setFilters] = useState({
     name: [],
     category: [],
@@ -26,6 +28,8 @@ const Serviceslaundry = () => {
     minimumPrice: 0,
     // maximumPrice: 100000,
   });
+  console.log(query);
+
   const [name, setName] = useState([]);
   const [category, setCategory] = useState([]);
   const [fabricType, setFabricType] = useState([]);
@@ -139,6 +143,25 @@ const Serviceslaundry = () => {
       }
       return isMatch ? item : null;
     });
+    // Search filter added here
+    if (query.trim() !== "") {
+      const lowerQuery = query.toLowerCase();
+
+      tempdata = tempdata.filter((item) => {
+        if (!item) return false;
+
+        const searchableText = `
+      ${item.name || ""}
+      ${item.category || ""}
+      ${item.fabricType || ""}
+      ${item.serviceMode || ""}
+      ${item.deliveryTime || ""}
+    `.toLowerCase();
+
+        return searchableText.includes(lowerQuery);
+      });
+    }
+
     setFilterdData(tempdata.filter((item) => item !== null));
     setCurrentPage(1);
 
@@ -151,7 +174,7 @@ const Serviceslaundry = () => {
       }
     }
     setFilterCount(val);
-  }, [filters]);
+  }, [filters, query]);
 
   const [favorites, setFavorites] = useState({});
   const [expandedCategories, setExpandedCategories] = useState({
@@ -223,76 +246,112 @@ const Serviceslaundry = () => {
   }, []);
 
   return (
-    <div className="container mx-auto px-4 sm:px-6 py-8 sm:py-12 md:py-16 mt-5 md:mt-0">
+    <div className="container px-4 sm:px-6 py-8 sm:py-12 md:py-16 mt-5  max-w-[1550px]  mx-auto md:mt-0">
       <h1 className="text-center font-bold text-3xl sm:text-4xl md:text-5xl text-[#1F3C5F] mb-6 sm:mb-10">
         Our Laundry Services
       </h1>
-
-      {/* Mobile filter toggle button - only visible on small screens */}
-      <button
-        className="md:hidden w-full flex items-center justify-between bg-white border border-gray-300 rounded-md px-4 py-3 mb-4"
-        onClick={() => setMobileFiltersVisible(!mobileFiltersVisible)}
-      >
-        <div className="flex items-center">
-          <span className="mr-2">☰</span>
-          <span>Filters</span>
-          {Object.values(filters).some((val) =>
-            Array.isArray(val) ? val.length > 0 : val > 0
-          ) && (
-            <span className="ml-2 bg-gray-200 rounded-full w-5 h-5 flex items-center justify-center text-xs">
-              {/* Count active filters */}
-              {Object.values(filters).reduce(
-                (count, val) =>
-                  count + (Array.isArray(val) ? val.length : val > 0 ? 1 : 0),
-                0
-              )}
-            </span>
-          )}
-        </div>
-        <FaChevronDown
-          size={12}
-          className={mobileFiltersVisible ? "transform rotate-180" : ""}
-        />
-      </button>
-
-      {/* Top filter bar */}
-      <div className="flex flex-col sm:flex-row items-stretch sm:items-center justify-between mb-4 gap-3">
-        <div className="hidden md:flex items-center border border-gray-300 rounded-md px-3 py-2">
-          <span className="mr-2">☰</span>
-          <span>Filter</span>
-          <span className="ml-2 bg-gray-200 rounded-full w-5 h-5 flex items-center justify-center text-xs">
-            {filterCount}
-          </span>
-        </div>
-
-        <div className="flex-1 relative">
-          <input
-            type="text"
-            placeholder="Wash & Fold"
-            className="w-full border border-gray-300 rounded-md pl-10 pr-4 py-2"
+      <div className="flex flex-col items-center px-4 py-3">
+        {/* Mobile filter toggle button - only visible on small screens */}
+        <button
+          className="md:hidden w-[157px] flex items-center justify-between bg-white border border-gray-300 rounded-md px-4 py-3 mb-4"
+          onClick={() => setMobileFiltersVisible(!mobileFiltersVisible)}
+        >
+          <div className="flex items-center">
+            <span className="mr-2">☰</span>
+            <span>Filters</span>
+            {Object.values(filters).some((val) =>
+              Array.isArray(val) ? val.length > 0 : val > 0
+            ) && (
+              <span className="ml-2 bg-gray-200 rounded-full w-5 h-5 flex items-center justify-center text-xs">
+                {Object.values(filters).reduce(
+                  (count, val) =>
+                    count + (Array.isArray(val) ? val.length : val > 0 ? 1 : 0),
+                  0
+                )}
+              </span>
+            )}
+          </div>
+          <FaChevronDown
+            size={12}
+            className={mobileFiltersVisible ? "transform rotate-180" : ""}
           />
-          <FaSearch className="absolute left-3 top-3 text-gray-400" />
-        </div>
+        </button>
 
-        <div className="flex items-center">
-          <span className="text-sm mr-2">Sort by:</span>
-          <div className="relative flex-grow sm:flex-grow-0">
-            <select
-              className="w-full sm:w-auto bg-white border border-gray-300 rounded-md px-3 py-2 appearance-none pr-8"
-              onChange={handleSortChange}
-            >
-              <option>Trending</option>
-              <option>Price: Low to High</option>
-              <option>Price: High to Low</option>
-              <option>Rating</option>
-            </select>
-            <FaChevronDown className="absolute right-2 top-3 text-gray-500" />
+        {/* Top filter bar */}
+        <div className="w-full flex flex-col md:flex-row md:items-center md:justify-between gap-3">
+          {/* Filter Count (Left on mobile) */}
+          <div className="flex md:hidden items-center font-semibold border border-[#7ED321] rounded-md px-3 py-2 w-full justify-start">
+            <span className="mr-2">☰</span>
+            <span>Filter</span>
+            <span className="ml-2 rounded-full w-5 h-5 flex items-center justify-center text-xs">
+              {filterCount}
+            </span>
+          </div>
+
+          {/* Search bar */}
+          <div className="flex items-center relative w-full md:w-[457px] h-12 mx-auto md:mx-0">
+            <input
+              type="text"
+              placeholder="Wash & Fold"
+              value={query}
+              onChange={(e) => setQuery(e.target.value)}
+              className="w-full border border-gray-300 rounded-md pl-10 pr-4 py-2"
+            />
+            <FaSearch className="absolute left-3 top-1/2 transform -translate-y-1/2 text-black" />
+          </div>
+
+          {/* Sort by (Right on mobile) */}
+          <div className="flex md:hidden w-full justify-end">
+            <div className="flex items-center">
+              <span className="text-sm mr-2">Sort by:</span>
+              <div className="relative w-[150px]">
+                <select
+                  className="w-full bg-white border border-[#7ED321] rounded-md px-3 py-2 appearance-none pr-8"
+                  onChange={handleSortChange}
+                >
+                  <option>Trending</option>
+                  <option>Price: Low to High</option>
+                  <option>Price: High to Low</option>
+                  <option>Rating</option>
+                </select>
+                <FaChevronDown className="absolute right-2 top-3 text-gray-500" />
+              </div>
+            </div>
+          </div>
+
+          {/* Filter + Sort for desktop */}
+          <div className="hidden md:flex items-center gap-3">
+            {/* Filter */}
+            <div className="flex items-center font-semibold border border-[#7ED321] rounded-md px-3 py-2">
+              <span className="mr-2">☰</span>
+              <span>Filter</span>
+              <span className="ml-2 rounded-full w-5 h-5 flex items-center justify-center text-xs">
+                {filterCount}
+              </span>
+            </div>
+
+            {/* Sort */}
+            <div className="flex items-center">
+              <span className="text-sm mr-2">Sort by:</span>
+              <div className="relative">
+                <select
+                  className="bg-white border border-[#7ED321] rounded-md px-3 py-2 appearance-none pr-8"
+                  onChange={handleSortChange}
+                >
+                  <option>Trending</option>
+                  <option>Price: Low to High</option>
+                  <option>Price: High to Low</option>
+                  <option>Rating</option>
+                </select>
+                <FaChevronDown className="absolute right-2 top-3 text-gray-500" />
+              </div>
+            </div>
           </div>
         </div>
       </div>
 
       {/* Suggestions bar - make scrollable on mobile */}
-      <div className="flex items-center text-sm mb-5 overflow-x-auto pb-2 -mx-4 px-4">
+      <div className="flex items-center text-sm mb-5 overflow-x-auto pb-2 -mx-2">
         <span className="text-gray-500 mr-2 whitespace-nowrap">
           Suggestion:
         </span>
@@ -458,49 +517,49 @@ const Serviceslaundry = () => {
 
             {expandedCategories["RATING"] && (
               <>
-              <div className="px-4 py-2">
-                {rating.map((rating) => (
-                  <div
-                    key={rating}
-                    className="flex justify-between items-center py-1"
-                  >
-                    <label className="flex items-center cursor-pointer">
-                      <input
-                        type="radio"
-                        name="rating"
-                        value={rating}
-                        className="mr-2 h-4 w-4"
-                        onChange={handleFilterChange}
-                      />
-                      <span className="flex items-center">
-                        <span className="text-yellow-400 mr-1">★</span> {rating}{" "}
-                        & UP
-                      </span>
-                    </label>
-                    {/* <span className="text-gray-500 text-sm">1345</span> */}
-                  </div>
-                ))}
-              </div>
-            <button
-              className="mt-2 px-4 py-2 bg-blue-500 text-white rounded-md hover:bg-red-600 transition duration-200 ease-in-out"
-              onClick={() => {
-                setFilters((prev) => ({
-                  ...prev,
-                  rating: 0,
-                }));
+                <div className="px-4 py-2">
+                  {rating.map((rating) => (
+                    <div
+                      key={rating}
+                      className="flex justify-between items-center py-1"
+                    >
+                      <label className="flex items-center cursor-pointer">
+                        <input
+                          type="radio"
+                          name="rating"
+                          value={rating}
+                          className="mr-2 h-4 w-4"
+                          onChange={handleFilterChange}
+                        />
+                        <span className="flex items-center">
+                          <span className="text-yellow-400 mr-1">★</span>{" "}
+                          {rating} & UP
+                        </span>
+                      </label>
+                      {/* <span className="text-gray-500 text-sm">1345</span> */}
+                    </div>
+                  ))}
+                </div>
+                <button
+                  className="mt-2 px-4 py-2 bg-blue-500 text-white rounded-md hover:bg-red-600 transition duration-200 ease-in-out"
+                  onClick={() => {
+                    setFilters((prev) => ({
+                      ...prev,
+                      rating: 0,
+                    }));
 
-                // Reset radio buttons for rating
-                const ratingRadios = document.querySelectorAll(
-                  'input[name="rating"]'
-                );
-                ratingRadios.forEach((radio) => {
-                  radio.checked = false;
-                });
-              }}
-            >
-              Remove Rating Filter
-            </button>
-            </>
+                    // Reset radio buttons for rating
+                    const ratingRadios = document.querySelectorAll(
+                      'input[name="rating"]'
+                    );
+                    ratingRadios.forEach((radio) => {
+                      radio.checked = false;
+                    });
+                  }}
+                >
+                  Remove Rating Filter
+                </button>
+              </>
             )}
           </div>
 
@@ -630,7 +689,7 @@ const Serviceslaundry = () => {
             )}
           </div>
           <button
-            className="w-full mt-2 flex items-center justify-center gap-2 bg-blue-50 hover:bg-blue-100 text-blue-800 font-medium py-2.5 px-4 rounded-md border border-blue-200 transition duration-200 ease-in-out"
+            className="w-full mt-2 flex items-center justify-center gap-2 bg-blue-50 hover:bg-blue-100 text-blue-800 font-medium py-2.5 px-4 rounded-md border border-blue-200 transition duration-200 ease-in-out "
             onClick={() => {
               // Reset filters state
               setFilters({
@@ -694,13 +753,13 @@ const Serviceslaundry = () => {
         </div>
 
         {/* Main content area with service cards */}
-        <div className="flex-1 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6">
+        <div className="grid grid-cols-2 md:grid-cols-2 gap-3 sm:gap-4 lg:grid-cols-3 xl:grid-cols-4 w-full  bg-white w-full bg-red-500">
           {filterdData
             .slice((currentPage - 1) * itemsPerPage, currentPage * itemsPerPage)
             .map((item) => (
               <div
                 key={item.id}
-                className="border border-gray-200 rounded-lg overflow-hidden bg-gray-100 shadow-sm h-90"
+                className="border border-gray-200 rounded-lg overflow-hidden bg-gray-100 w-[168px]  h-[320px] sm:w-[180px] xl-w-[312px]   md:w-[212px] md:h-[380px]  shadow-sm h-90 mx-auto"
               >
                 {/* Service image with favorite button */}
                 <div className="relative h-48">
@@ -727,14 +786,14 @@ const Serviceslaundry = () => {
                 {/* item details */}
                 <div className="p-4">
                   <div className="flex items-center justify-between mb-1">
-                    <div className="text-xs uppercase font-medium text-orange-600 mb-1">
+                    <div className="text-xs uppercase font-medium text-orange-600 mb-1  text-[11px]">
                       {item.heading || item.category}
                     </div>
-                    <div className="text-xl font-bold mb-2 text-right">
+                    <div className="text-xl font-bold mb-2 text-right  text-[11px] sm:text-[14px] md:text-[16px]">
                       {item.priceLabel}
                     </div>
                   </div>
-                  <p className="text-base font-medium text-gray-800 mb-3">
+                  <p className="text-base font-medium text-gray-800 mb-3 text-[11px] sm:text-[14px] md:text-[16px]">
                     {item.shortDescription || item.description}
                   </p>
 
@@ -800,7 +859,7 @@ const Serviceslaundry = () => {
               <button
                 className={`flex items-center justify-center w-8 h-8 rounded-full ${
                   currentPage === 1
-                    ? "border border-gray-200 text-gray-400"
+                    ? "border border-gray-200 "
                     : "border border-gray-300 cursor-pointer hover:bg-gray-100"
                 }`}
                 onClick={() =>
@@ -808,7 +867,7 @@ const Serviceslaundry = () => {
                 }
                 disabled={currentPage === 1}
               >
-                &lt;
+                <ArrowLeft size={20} />
               </button>
 
               {/* On mobile, show fewer page numbers */}
@@ -822,7 +881,7 @@ const Serviceslaundry = () => {
                   {startPage > 1 && (
                     <>
                       <button
-                        className="flex items-center justify-center w-8 h-8 rounded-full border border-gray-300 mx-1 hover:bg-gray-100"
+                        className="flex items-center justify-center w-8 h-8 rounded-full   border border-gray-300 mx-1 hover:bg-gray-100"
                         onClick={() => handlePageChange(1)}
                       >
                         01
@@ -837,7 +896,7 @@ const Serviceslaundry = () => {
                       key={number}
                       className={`flex items-center justify-center w-8 h-8 rounded-full mx-1 ${
                         currentPage === number
-                          ? "bg-blue-900 text-white"
+                          ? "bg-[#1F3C5F] text-white"
                           : "border border-gray-300 hover:bg-gray-100"
                       }`}
                       onClick={() => handlePageChange(number)}
@@ -875,7 +934,7 @@ const Serviceslaundry = () => {
                 }
                 disabled={currentPage === totalPages}
               >
-                &gt;
+                <ArrowRight size={20} />
               </button>
             </>
           );
