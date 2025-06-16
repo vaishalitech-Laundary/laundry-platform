@@ -1,11 +1,14 @@
-import React from 'react'
+import React from "react";
+import ContactForm from "./ContactForm";
+import FaqPage from "./FaqPage";
 
 const HelpRoute = () => {
   return (
-    <div className='bg-red-700 h-screen w-full flex justify-center items-center'>
-      help
-    </div>
-  )
-}
+    <>
+      <ContactForm />
+      <FaqPage />
+    </>
+  );
+};
 
-export default HelpRoute
+export default HelpRoute;
