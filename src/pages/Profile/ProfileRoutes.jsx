@@ -11,7 +11,7 @@ const ProfileRoutes = () => {
   return (
     <>
       <button 
-        onClick={() => navigate(-1)} 
+        onClick={() => navigate("/user-dashboard")} 
         className="cursor-pointer mb-4 px-4 py-2 ml-20 flex items-center text-gray-700 hover:text-gray-900 transition-colors"
       >
         <FaArrowLeft className="mr-2" /> Back

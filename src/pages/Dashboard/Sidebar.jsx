@@ -40,7 +40,7 @@ const navItems = [
     ),
   },
   {
-    to: '/user-dashboard/profile-settings',
+    to: '/user-profile',
     label: 'Profile & Settings',
     icon: (
       <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" className="w-5 h-5">
