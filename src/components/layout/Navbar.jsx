@@ -14,7 +14,7 @@ const Navbar = () => {
     <nav className='relative px-4 py-2 md:px-6 lg:px-8'>
       <div className='flex items-center justify-between'>
         <div>
-         <Link to="/"><img src={Logo} alt="Freshfold" className='h-12 md:h-[15vh] bg-none brightness-112' /></Link> 
+         <Link to="/"><img src={Logo} alt="Freshfold" className='h-16 bg-none brightness-112' /></Link> 
         </div>
         <button 
           className='md:hidden p-2'
@@ -29,7 +29,7 @@ const Navbar = () => {
           </svg>
         </button>
         <div className='hidden md:block'>
-          <ul className='flex gap-5 text-lg lg:text-[3.5vh]'>
+          <ul className='flex gap-5 text-xl '>
             <li><Link to="/" className='hover:text-blue-600 cursor-pointer'>Home</Link></li>
             <li><Link to="/services" className='hover:text-blue-600 cursor-pointer'>Services</Link></li>
             <li><Link to="/pricing" className='hover:text-blue-600 cursor-pointer'>Pricing</Link></li>
