@@ -8,7 +8,10 @@ import Services from "../pages/Services/Services";
 import UserDashboardRoute from "../pages/Dashboard/userDashboardRoute";
 import UserProfileRoute from "../pages/Profile/ProfileRoutes"
 import HelpRoute from "../components/Help/HelpRoute";
-import Pricing from "../pages/Other/Pricing"
+
+/// other pages are imported here ----
+import Pricing from "../pages/Other/Pricing";
+import PageNotFound from "../pages/Other/PageNotFound";
 
 
 
@@ -21,10 +24,11 @@ const AppRoutes = () => {
       <Route path="/user-dashboard/*" element={<UserDashboardRoute />} />
       <Route path="/user-profile/*" element={<UserProfileRoute/>} />
       <Route path="/help" element={<HelpRoute />} />
+      
       <Route path="/pricing" element={<Pricing />} />
 
 
-      <Route path="*" element={<div className="p-6 text-center">404 - Page Not Found</div>} />
+      <Route path="*" element={<PageNotFound/>} />
 
     </Routes>
   );
