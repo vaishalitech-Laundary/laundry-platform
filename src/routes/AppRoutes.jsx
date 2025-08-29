@@ -14,6 +14,9 @@ import Pricing from "../pages/Other/Pricing";
 import PageNotFound from "../pages/Other/PageNotFound";
 
 
+//// auth middleware is imported here ------------
+import ProtectedRoutes from "../authMiddleware/ProtectedRoutes.jsx";
+
 
 const AppRoutes = () => {
   return (
@@ -21,14 +24,18 @@ const AppRoutes = () => {
       <Route path="/" element={<Home />} />
       <Route path="/login" element={<Login />} />
       <Route path="/services" element={<Services />} />
+      <Route path="/pricing" element={<Pricing />} />
+      <Route path="*" element={<PageNotFound/>} />
+
+
+<Route element={<ProtectedRoutes allowedRoles={["user"]} />}>    
       <Route path="/user-dashboard/*" element={<UserDashboardRoute />} />
       <Route path="/user-profile/*" element={<UserProfileRoute/>} />
       <Route path="/help" element={<HelpRoute />} />
+    </Route>
       
-      <Route path="/pricing" element={<Pricing />} />
 
 
-      <Route path="*" element={<PageNotFound/>} />
 
     </Routes>
   );
